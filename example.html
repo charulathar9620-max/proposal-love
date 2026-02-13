@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinematic Proposal ❤️</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  overflow:hidden;
+  color:white;
+}
+
+/* Pages */
+.page{
+  height:100vh;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  animation:fade 1.2s ease;
+  padding:20px;
+}
+
+@keyframes fade{
+  from{opacity:0; transform:translateY(40px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+button{
+  margin-top:30px;
+  padding:14px 26px;
+  border:none;
+  border-radius:30px;
+  font-size:18px;
+  cursor:pointer;
+  background:white;
+  color:#ff4d79;
+}
+
+/* NO button */
+#noBtn{
+  position:absolute;
+  background:#222;
+  color:white;
+}
+
+/* Floating hearts */
+.heart{
+  position:absolute;
+  bottom:-20px;
+  font-size:20px;
+  animation:floatUp 6s linear infinite;
+}
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:0;}
+  to{transform:translateY(-110vh);opacity:1;}
+}
+
+/* Mobile */
+@media(max-width:600px){
+  h1{font-size:26px;}
+  p{font-size:16px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page">
+  <h1>From the first moment we spoke… 💫</h1>
+  <p>You didn’t just enter my life… you became my peace.</p>
+  <button onclick="nextPage('page1','page2')">Next ❤️</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page" style="display:none;">
+  <h1>Every Memory With You 🌷</h1>
+  <p>Every laugh, every smile… became my favorite story.</p>
+  <button onclick="nextPage('page2','page3')">Next 💖</button>
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3" class="page" style="display:none;">
+  <h1>My Promise 🤍</h1>
+  <p>I don’t promise a perfect life…  
+  but I promise a life where you are never alone.</p>
+  <button onclick="nextPage('page3','proposalPage')">
+    I Need To Ask You Something…
+  </button>
+</div>
+
+<!-- PROPOSAL PAGE -->
+<div id="proposalPage" class="page" style="display:none;">
+  <h1>Will You Be With Me Forever? 💍</h1>
+
+  <button id="yesBtn">YES ❤️</button>
+  <button id="noBtn">NO 😢</button>
+</div>
+
+<script>
+
+/* Floating hearts generator */
+function createHeart(){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+}
+setInterval(createHeart,500);
+
+/* Page navigation */
+function nextPage(current,next){
+  document.getElementById(current).style.display="none";
+  document.getElementById(next).style.display="flex";
+}
+
+/* NO button runs away */
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",moveBtn);
+noBtn.addEventListener("click",moveBtn);
+
+function moveBtn(){
+  const x=Math.random()*(window.innerWidth-100);
+  const y=Math.random()*(window.innerHeight-50);
+  noBtn.style.left=x+"px";
+  noBtn.style.top=y+"px";
+}
+
+/* YES CLICK → FINAL CINEMATIC SCREEN */
+document.getElementById("yesBtn").addEventListener("click",()=>{
+
+document.body.innerHTML=`
+
+<div class="page" style="background:black;">
+
+  <h1>Love You mama always be with me da thango ❤️✨</h1>
+
+  <p style="margin-top:20px;font-size:20px;">
+    Missing You So Much And Sorry for everything
+    S💖C
+  </p>
+
+  <a href="https://youtu.be/xh7TQ_-jhbk"
+     style="
+     margin-top:30px;
+     padding:14px 26px;
+     background:#ff4d79;
+     color:white;
+     text-decoration:none;
+     border-radius:30px;">
+     ▶ Play Our Video ❤️
+  </a>
+
+</div>
+`;
+});
+
+</script>
+
+</body>
+</html>
